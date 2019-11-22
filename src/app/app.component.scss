@@ -1,0 +1,35 @@
+$DEFAULT_FORM_SPACING: 2em;
+.form-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  app-auto-complete-input {
+    margin-left: $DEFAULT_FORM_SPACING;
+  }
+
+  mat-form-field {
+    margin-left: $DEFAULT_FORM_SPACING;
+  }
+
+  mat-slide-toggle {
+    margin-left: $DEFAULT_FORM_SPACING;
+  }
+}
+
+.result-area {
+  display: flex;
+  justify-content: space-around;
+
+
+  > div {
+    flex-grow: 1;
+    background-color: aquamarine;
+  }
+
+  .invalid {
+    text-align: center;
+    font-size: x-large;
+    color: darkgray;
+  }
+}

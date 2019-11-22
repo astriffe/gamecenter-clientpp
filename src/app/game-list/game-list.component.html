@@ -1,0 +1,8 @@
+
+<div class="common-actions">
+  Common action area
+</div>
+
+<div *ngFor="let game of games" class="game-grid">
+  <app-game-list-entry [game]="game"></app-game-list-entry>
+</div>

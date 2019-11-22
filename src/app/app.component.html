@@ -1,0 +1,58 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Volley Game Center Client++
+  </h1>
+</div>
+
+<div>
+  <form [formGroup]="filterForm">
+    <div class="form-line">
+      <app-auto-complete-input ngDefaultControl
+                               [formControl]="this.filterForm.controls.team"
+                               [options]="availableTeams"
+                               (selectedValue)="updateSelectedTeam($event)"
+                               class="selection" placeholder="Team">
+      </app-auto-complete-input>
+      <app-auto-complete-input ngDefaultControl
+                               [formControl]="this.filterForm.controls.league"
+                               [options]="availableLeagues"
+                               (selectedValue)="updateSelectedLeague($event)"
+                               class="selection"
+                               placeholder="Liga">
+      </app-auto-complete-input>
+      <mat-slide-toggle [formControl]="this.filterForm.controls.homeGame" name="filterHomeGame">nur Heimspiele</mat-slide-toggle>
+    </div>
+    <div class="form-line">
+      <mat-form-field>
+        <input matInput [formControl]="this.filterForm.controls.dateFrom" [matDatepicker]="pickerFrom" placeholder="von Datum">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [formControl]="this.filterForm.controls.dateUntil" [matDatepicker]="pickerUntil" placeholder="bis Datum">
+        <mat-datepicker-toggle matSuffix [for]="pickerUntil"></mat-datepicker-toggle>
+        <mat-datepicker #pickerUntil></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div class="result-area" >
+<!--  <div *ngIf="filterForm.valid && filteredGames.length > 0">-->
+  <div *ngIf="filteredGames.length > 0" class="blubber">
+    <app-game-list [games]="filteredGames"></app-game-list>
+    Spiel gefunden.
+<!--    <div *ngFor="let encounter of filteredGames">{{encounter.teams.away.caption}} - {{encounter.teams.home.caption}}</div>-->
+  </div>
+<!--  <div *ngIf="!filterForm.valid" class="invalid">-->
+<!--    Bitte Liga und Team eingeben.-->
+<!--  </div>-->
+  <div *ngIf="filterForm.valid && filteredGames.length === 0" class="invalid">
+    Keine Spiele gefunden.
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
