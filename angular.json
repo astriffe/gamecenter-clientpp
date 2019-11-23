@@ -25,6 +25,7 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
+              "src/games-1920.json",
               "src/assets"
             ],
             "styles": [
@@ -57,6 +58,10 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
+              ],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets"
               ]
             }
           }
