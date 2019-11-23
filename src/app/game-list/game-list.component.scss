@@ -1,9 +1,21 @@
 .common-actions {
-  background: beige;
+  position: fixed !important;
+  right: 15px;
+  bottom: 15px;
+
+
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  > app-button-with-text {
+    margin-left: 1em;
+  }
 }
 
 .game-grid {
-  display: flex;
   flex-direction: column;
   max-width: 800px;
 

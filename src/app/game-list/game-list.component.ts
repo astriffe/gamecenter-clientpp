@@ -4,7 +4,7 @@ import { SpreadsheetService } from '../services/spreadsheet.service';
 import { DateUtil } from '../util/date.util';
 import { AddressUtil } from '../util/address.util';
 import * as moment from 'moment';
-import { CalendarUtil } from '../util/calendar.util';
+import { CalendarService } from '../services/calendar.service';
 
 @Component({
   selector: 'app-game-list',
@@ -16,7 +16,8 @@ export class GameListComponent implements OnInit {
   @Input()
   public games: Game[];
 
-  constructor(private spreadsheetService: SpreadsheetService) {
+  constructor(private spreadsheetService: SpreadsheetService,
+              private calendarService: CalendarService) {
   }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class GameListComponent implements OnInit {
         heimmannschaft: game.teams.home.caption,
         gastmannschaft: game.teams.away.caption,
         adresse: AddressUtil.getFullAddress(game.hall),
-        liga: game.league,
+        liga: game.league.caption,
       };
     });
     this.spreadsheetService.exportAsExcelFile(spreadsheetData, 'volleyball');
@@ -40,7 +41,8 @@ export class GameListComponent implements OnInit {
 
   public exportCalendarEntries() {
     const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(CalendarUtil.generateCalendar(this.games)));
+    const calendarData = encodeURIComponent(this.calendarService.generateCalendar(this.games));
+    element.setAttribute('href', `data:text/calendar;charset=utf-8,${calendarData}`);
     element.setAttribute('download', 'volleyball.ics');
     element.setAttribute('target', '_blank');
     element.style.display = 'none';

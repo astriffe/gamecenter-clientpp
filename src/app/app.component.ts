@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { merge, of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Game } from './model/game';
-import { startWith, takeUntil, tap } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import 'moment-timezone';
@@ -13,8 +13,6 @@ import 'moment-timezone';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  // verbandSelection= ['SVRBE', 'SVRFR'];
-
   title = 'volleycenter-client';
 
   private destroy$ = new Subject<void>();
@@ -39,11 +37,10 @@ export class AppComponent implements OnInit, OnDestroy {
   });
 
   constructor(private httpClient: HttpClient) {
-
   }
 
   ngOnInit(): void {
-    this.httpClient.get('http://localhost:4200/games.json')
+    this.httpClient.get('http://localhost:4200/games-1920.json')
       .pipe(
         tap((games: Game[]) => this.gameData = games),
         tap((games) => this.processAvailableTeams(games)),
@@ -55,30 +52,21 @@ export class AppComponent implements OnInit, OnDestroy {
         this.updateFilteredGames();
       });
 
-    // of(this.filterHomeGame).subscribe(() => console.log('>>> home game change'))
-
     this.filterForm.valueChanges
       .pipe(
         tap(() => this.updateFilteredGames()),
         tap(() => console.log('update filtered games. Found ', this.filteredGames.length)),
         takeUntil(this.destroy$))
       .subscribe();
-
   }
 
-  // public get filterSufficient(): boolean {return this.selectedTeam != null && this.selectedTeam != '' && this.selectedLeague != null}
-
   private updateFilteredGames(): void {
-    this.selectedTeam = 'TSC Solothurn';
-    this.selectedLeague = '5. Liga Frauen';
+    this.selectedTeam = this.filterForm.controls.team.value;
+    this.selectedLeague = this.filterForm.controls.league.value;
     this.filterHomeGame = this.filterForm.controls.homeGame.value;
-    // this.selectedTeam = this.filterForm.controls.team.value;
-    // this.selectedLeague = this.filterForm.controls.league.value;
-    // this.filterHomeGame = this.filterForm.controls.homeGame.value;
+    this.filterFrom = this.filterForm.controls.dateFrom.value;
+    this.filterUntil = this.filterForm.controls.dateUntil.value;
 
-    console.log('>>> selected league', this.selectedLeague);
-    console.log('>>> selected team', this.selectedTeam);
-    console.log('>>> filter home game', this.filterHomeGame);
     if (!this.selectedTeam || !this.selectedLeague) {
       this.filteredGames = [];
       return;
@@ -113,10 +101,6 @@ export class AppComponent implements OnInit, OnDestroy {
     const allTeams = games.map(game => game.teams.home.caption).concat(games.map(game => game.teams.away.caption));
     this.availableTeams = [...new Set(allTeams)];
     this.availableLeagues.sort();
-  }
-
-  public get encounters(): string[] {
-    return this.gameData.map((game) => `${game.teams.home.caption} - ${game.teams.home.clubCaption}`);
   }
 
   public ngOnDestroy(): void {
