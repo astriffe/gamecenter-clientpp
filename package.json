@@ -26,7 +26,6 @@
     "@angular/router": "~8.1.1",
     "@types/moment-timezone": "^0.5.12",
     "file-saver": "2.0.2",
-    "ics": "^2.18.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "rxjs": "~6.4.0",

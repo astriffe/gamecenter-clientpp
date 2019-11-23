@@ -14,11 +14,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GameListComponent } from './game-list/game-list.component';
 import { GameListEntryComponent } from './game-list-entry/game-list-entry.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { SpreadsheetService } from './services/spreadsheet.service';
+import { CalendarService } from './services/calendar.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SpreadsheetService } from './services/spreadsheet.service';
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
     SpreadsheetService,
+    CalendarService,
   ],
   bootstrap: [AppComponent],
 })
