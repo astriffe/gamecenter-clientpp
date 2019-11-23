@@ -3,27 +3,33 @@
   //width: 80%;
   align-content: start;
   justify-content: start;
-  grid-template-columns: 100px 50px auto;
+  grid-template-columns: 100px auto;
   grid-template-rows: auto;
-  background-color: lightblue;
+
+  grid-column-gap: 1em;
+  grid-row-gap: .2em;
   margin: .5em;
 
   > .date {
     grid-row-start: 1;
     grid-row-end: 2;
+    justify-self: right;
   }
 
   > .time {
-    grid-row-start: 1;
+    justify-self: right;
+    grid-row-start: 2;
     grid-row-end: 2;
+    grid-column-start: 1;
   }
 
   > .encounter {
-    background-color: orange;
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
+    font-size: large;
+    font-weight: bold;
 
 
     display: flex;

@@ -18,6 +18,7 @@ import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { SpreadsheetService } from './services/spreadsheet.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
+    SpreadsheetService,
   ],
   bootstrap: [AppComponent],
 })
