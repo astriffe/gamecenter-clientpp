@@ -11,7 +11,7 @@ import { map, startWith } from 'rxjs/operators';
 export class AutoCompleteInputComponent<T> implements OnInit {
 
   @Input()
-  private options: T[];
+  private readonly options: T[];
 
   @Input()
   public placeholder: string;
@@ -29,7 +29,6 @@ export class AutoCompleteInputComponent<T> implements OnInit {
   public filteredOptions: Observable<T[]>;
 
   constructor() {
-
     if (!this.toStringFn) {
       this.toStringFn = (a) => a;
     }
@@ -52,5 +51,4 @@ export class AutoCompleteInputComponent<T> implements OnInit {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => this.toStringFn(option).toLowerCase().includes(filterValue));
   }
-
 }

@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Volley GameCenter Client++
@@ -40,18 +39,14 @@
 </div>
 
 <div class="result-area" >
-<!--  <div *ngIf="filterForm.valid && filteredGames.length > 0">-->
-  <div *ngIf="filteredGames.length > 0">
+  <div *ngIf="filterForm.valid && filteredGames.length > 0">
     <app-game-list [games]="filteredGames"></app-game-list>
-<!--    <div *ngFor="let encounter of filteredGames">{{encounter.teams.away.caption}} - {{encounter.teams.home.caption}}</div>-->
   </div>
-<!--  <div *ngIf="!filterForm.valid" class="invalid">-->
-<!--    Bitte Liga und Team eingeben.-->
-<!--  </div>-->
+  <div *ngIf="!filterForm.valid" class="invalid">
+    Bitte Liga und Team eingeben.
+  </div>
   <div *ngIf="filterForm.valid && filteredGames.length === 0" class="invalid">
     Keine Spiele gefunden.
   </div>
 </div>
-
-
 <router-outlet></router-outlet>

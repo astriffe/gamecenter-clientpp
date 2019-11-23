@@ -3,6 +3,7 @@ $DEFAULT_FORM_SPACING: 2em;
 .form-line {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
 
   app-auto-complete-input {
@@ -29,6 +30,7 @@ $DEFAULT_FORM_SPACING: 2em;
   }
 
   .invalid {
+    margin-top: 1.5em;
     text-align: center;
     font-size: x-large;
     color: darkgray;

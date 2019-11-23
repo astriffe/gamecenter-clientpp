@@ -33,7 +33,7 @@ export class GameListComponent implements OnInit {
         heimmannschaft: game.teams.home.caption,
         gastmannschaft: game.teams.away.caption,
         adresse: AddressUtil.getFullAddress(game.hall),
-        liga: game.league,
+        liga: game.league.caption,
       };
     });
     this.spreadsheetService.exportAsExcelFile(spreadsheetData, 'volleyball');

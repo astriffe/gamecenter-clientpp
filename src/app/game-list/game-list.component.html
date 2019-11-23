@@ -1,18 +1,14 @@
 <div class="common-actions">
-  <app-button icon="save_alt" text="Tabelle herunterladen"></app-button>
-  <app-button icon="today" text="Kalender herunterladen"></app-button>
-<!--  <mat-chip-list>-->
-<!--    <mat-chip (click)="exportSpreadsheet()"-->
-<!--              color="primary" selected>-->
-<!--      <mat-icon>save_alt</mat-icon>-->
-<!--      XLS-->
-<!--    </mat-chip>-->
-<!--    <mat-chip (click)="exportCalendarEntries()"-->
-<!--              color="primary" selected>-->
-<!--      <mat-icon>today</mat-icon>-->
-<!--      Kalender-->
-<!--    </mat-chip>-->
-<!--  </mat-chip-list>-->
+  <app-button
+    (click)="exportSpreadsheet()"
+    icon="save_alt"
+    text="Tabelle herunterladen">
+  </app-button>
+  <app-button
+    (click)="exportCalendarEntries()"
+    icon="today"
+    text="Kalendereinträge herunterladen">
+  </app-button>
 </div>
 
 <div *ngFor="let game of games" class="game-grid">
