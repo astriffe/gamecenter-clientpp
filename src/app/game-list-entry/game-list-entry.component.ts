@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Game } from '../model/game';
-import * as moment from 'moment';
+import { DateUtil } from '../util/date.util';
+import { AddressUtil } from '../util/address.util';
 
 @Component({
   selector: 'app-game-list-entry',
@@ -19,21 +20,19 @@ export class GameListEntryComponent implements OnInit {
   }
 
   public get date(): string {
-    return moment.tz(this.game.playDate, 'Europe/Zurich').format('DD.MM.YYYY');
+    return DateUtil.extractDate(this.game.playDate);
   }
 
   public get time(): string {
-    return moment.tz(this.game.playDate, 'Europe/Zurich').format('HH:mm');
+    return DateUtil.extractTime(this.game.playDate);
   }
 
   public get address(): string {
-    const location = this.game.hall;
-    return `${location.street} ${location.number}, ${location.zip} ${location.city}`;
+    return AddressUtil.getFullAddress(this.game.hall);
   }
 
   public get hyperlink(): string {
-    const location = this.game.hall;
-    return `http://map.search.ch/${location.city}/${location.street}.${location.number}`;
+    return AddressUtil.getHyperlink(this.game.hall);
   }
 
 }

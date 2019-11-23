@@ -5,6 +5,7 @@
 .game-grid {
   display: flex;
   flex-direction: column;
+  max-width: 800px;
 
   flex-grow: 1;
   justify-content: flex-start;

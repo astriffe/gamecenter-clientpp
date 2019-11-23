@@ -19,12 +19,13 @@ $DEFAULT_FORM_SPACING: 2em;
 
 .result-area {
   display: flex;
-  justify-content: space-around;
-
+  justify-content: center;
 
   > div {
     flex-grow: 1;
-    background-color: aquamarine;
+
+    display: flex;
+    justify-content: center;
   }
 
   .invalid {
