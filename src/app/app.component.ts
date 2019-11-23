@@ -6,6 +6,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import 'moment-timezone';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.httpClient.get('http://alexander.striffeler.ch/volley/data/svrbe-1920.json')
+    this.httpClient.get(environment.dataUrl)
       .pipe(
         tap((games: Game[]) => this.gameData = games),
         tap((games) => this.processAvailableTeams(games)),

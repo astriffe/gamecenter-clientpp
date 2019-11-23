@@ -6,6 +6,10 @@ $DEFAULT_FORM_SPACING: 2em;
   flex-wrap: wrap;
   align-items: center;
 
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
+
   app-auto-complete-input {
     margin-left: $DEFAULT_FORM_SPACING;
   }

@@ -20,7 +20,10 @@
                                class="selection"
                                placeholder="Liga">
       </app-auto-complete-input>
-      <mat-slide-toggle [formControl]="this.filterForm.controls.homeGame" name="filterHomeGame">nur Heimspiele</mat-slide-toggle>
+      <mat-slide-toggle [formControl]="this.filterForm.controls.homeGame"
+                        color="primary"
+                        name="filterHomeGame">nur Heimspiele
+      </mat-slide-toggle>
     </div>
     <div class="form-line">
       <mat-form-field>
@@ -38,7 +41,7 @@
   </form>
 </div>
 
-<div class="result-area" >
+<div class="result-area">
   <div *ngIf="filterForm.valid && filteredGames.length > 0">
     <app-game-list [games]="filteredGames"></app-game-list>
   </div>
