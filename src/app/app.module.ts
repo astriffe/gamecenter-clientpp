@@ -20,6 +20,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { SpreadsheetService } from './services/spreadsheet.service';
 import { CalendarService } from './services/calendar.service';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { ButtonComponent } from './button/button.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { CalendarService } from './services/calendar.service';
     AutoCompleteInputComponent,
     GameListComponent,
     GameListEntryComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,9 @@ import { CalendarService } from './services/calendar.service';
     MatMomentDateModule,
     MatDividerModule,
     MatIconModule,
+    MatChipsModule,
+    MatButtonModule,
+    MatTooltipModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},

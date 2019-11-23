@@ -28,6 +28,7 @@
     "file-saver": "2.0.2",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
+    "roboto-fontface": "^0.10.0",
     "rxjs": "~6.4.0",
     "scss": "^0.2.4",
     "scss-loader": "0.0.1",

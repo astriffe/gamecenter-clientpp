@@ -1,6 +1,5 @@
 .game-entry {
   display: grid;
-  //width: 80%;
   align-content: start;
   justify-content: start;
   grid-template-columns: 100px auto;
@@ -31,7 +30,6 @@
     font-size: large;
     font-weight: bold;
 
-
     display: flex;
 
     .divider {
@@ -44,5 +42,14 @@
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
+
+    > a {
+      display: flex;
+      align-self: center;
+
+      > mat-icon {
+        font-size: medium;
+      }
+    }
   }
 }
