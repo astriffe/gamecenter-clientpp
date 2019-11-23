@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "volleycenter-client": {
+    "gamecenter-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/volleycenter-client",
+            "outputPath": "dist/gamecenter-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,8 +25,6 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/games.json",
-              "src/games-1920.json",
               "src/assets"
             ],
             "styles": [
@@ -66,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "volleycenter-client:build"
+            "browserTarget": "gamecenter-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "volleycenter-client:build:production"
+              "browserTarget": "gamecenter-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "volleycenter-client:build"
+            "browserTarget": "gamecenter-client:build"
           }
         },
         "test": {
@@ -115,16 +113,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "volleycenter-client:serve"
+            "devServerTarget": "gamecenter-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "volleycenter-client:serve:production"
+              "devServerTarget": "gamecenter-client:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "volleycenter-client"
+  "defaultProject": "gamecenter-client"
 }
