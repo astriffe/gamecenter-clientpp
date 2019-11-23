@@ -13,7 +13,7 @@ import 'moment-timezone';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'volleycenter-client';
+  title = 'gamecenter-client';
 
   private destroy$ = new Subject<void>();
   private gameData: Game[] = [];
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.httpClient.get('http://localhost:4200/games-1920.json')
+    this.httpClient.get('http://alexander.striffeler.ch/volley/data/svrbe-1920.json')
       .pipe(
         tap((games: Game[]) => this.gameData = games),
         tap((games) => this.processAvailableTeams(games)),
