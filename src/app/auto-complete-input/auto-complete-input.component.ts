@@ -43,7 +43,6 @@ export class AutoCompleteInputComponent<T> implements OnInit {
   }
 
   public changeSelection(selection: T): void {
-    console.log('>>> changed selection', selection);
     this.selectedValue.emit(selection);
   }
 

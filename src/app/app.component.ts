@@ -56,7 +56,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.filterForm.valueChanges
       .pipe(
         tap(() => this.updateFilteredGames()),
-        tap(() => console.log('update filtered games. Found ', this.filteredGames.length)),
         takeUntil(this.destroy$))
       .subscribe();
   }
