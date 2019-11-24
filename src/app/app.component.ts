@@ -1,12 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { Game } from './model/game';
-import { takeUntil, tap } from 'rxjs/operators';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {AfterViewInit, Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, Subject} from 'rxjs';
+import {Game} from './model/game';
+import {takeUntil, tap} from 'rxjs/operators';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import * as moment from 'moment';
 import 'moment-timezone';
-import { environment } from '../environments/environment';
+import {environment} from '../environments/environment';
+import {QueryParamBuilder, QueryParamGroup} from "@ngqp/core";
 
 @Component({
   selector: 'app-root',
@@ -27,17 +28,24 @@ export class AppComponent implements OnInit, OnDestroy {
   public filterHomeGame: boolean;
   public filterFrom: string;
   public filterUntil: string;
-
   public filteredGames: Game[] = [];
-  public filterForm: FormGroup = new FormGroup({
-    team: new FormControl('', Validators.required),
-    league: new FormControl('', Validators.required),
-    homeGame: new FormControl(''),
-    dateFrom: new FormControl(''),
-    dateUntil: new FormControl(''),
-  });
 
-  constructor(private httpClient: HttpClient) {
+  public filterForm: FormGroup;
+  public searchParams: QueryParamGroup;
+
+  constructor(private httpClient: HttpClient, private queryParamBuilder: QueryParamBuilder, private formBuilder: FormBuilder) {
+    this.searchParams = queryParamBuilder.group({
+      team: queryParamBuilder.stringParam('t'),
+      league: queryParamBuilder.stringParam('l')
+    });
+
+    this.filterForm = formBuilder.group({
+      team: new FormControl('', Validators.required),
+      league: new FormControl('', Validators.required),
+      homeGame: new FormControl(''),
+      dateFrom: new FormControl(''),
+      dateUntil: new FormControl(''),
+    });
   }
 
   ngOnInit(): void {
@@ -58,6 +66,16 @@ export class AppComponent implements OnInit, OnDestroy {
         tap(() => this.updateFilteredGames()),
         takeUntil(this.destroy$))
       .subscribe();
+
+    this.bindFilterPropertyFormToSearchParam('team');
+    this.bindFilterPropertyFormToSearchParam('league');
+  }
+
+  private bindFilterPropertyFormToSearchParam(formProperty: string, paramName?: string): void {
+    paramName = paramName || formProperty;
+    (this.searchParams.get(paramName).valueChanges as Observable<any>)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((team) => this.filterForm.controls[formProperty].setValue(team));
   }
 
   private updateFilteredGames(): void {
@@ -84,12 +102,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.filteredGames = result;
   }
 
-  public updateSelectedTeam(team: any): void {
-    this.selectedTeam = team;
+  public updateSelectedTeam(team: string): void {
+    this.searchParams.get('team').setValue(team as any);
   }
 
   public updateSelectedLeague(league: string): void {
-    this.selectedLeague = league;
+    this.searchParams.get('league').setValue(league as any);
   }
 
   private processAvailableLeagues(games: Game[]): void {

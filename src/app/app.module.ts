@@ -24,6 +24,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from './button/button.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {QueryParamModule} from "@ngqp/core";
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatChipsModule,
     MatButtonModule,
     MatTooltipModule,
+    QueryParamModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
