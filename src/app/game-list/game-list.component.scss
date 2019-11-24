@@ -4,7 +4,6 @@
   bottom: 15px;
 
 
-
   display: flex;
   flex-direction: column;
 
@@ -17,9 +16,8 @@
 
 .game-grid {
   flex-direction: column;
-  max-width: 800px;
-
   flex-grow: 1;
   justify-content: flex-start;
   align-items: stretch;
+  min-width: 300px;
 }
