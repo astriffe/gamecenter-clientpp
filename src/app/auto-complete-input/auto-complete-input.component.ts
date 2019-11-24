@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
-import { identity, noop, Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AbstractControl, FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-auto-complete-input',
@@ -19,9 +19,8 @@ export class AutoCompleteInputComponent<T> implements OnInit {
   @Input()
   public formControl: AbstractControl | FormControl;
 
-  // @Input()
   @Output()
-  public selectedValue = new EventEmitter<T>();
+  public selectedValueChange = new EventEmitter<T>();
 
   @Input()
   public toStringFn: (T) => string;
@@ -43,7 +42,7 @@ export class AutoCompleteInputComponent<T> implements OnInit {
   }
 
   public changeSelection(selection: T): void {
-    this.selectedValue.emit(selection);
+    this.selectedValueChange.emit(selection);
   }
 
   private _filter(value: string): T[] {

@@ -5,18 +5,19 @@
 </div>
 
 <div>
-  <form [formGroup]="filterForm">
+  <form [formGroup]="filterForm" [queryParamGroup]="searchParams">
     <div class="form-line">
       <app-auto-complete-input ngDefaultControl
                                [formControl]="this.filterForm.controls.team"
                                [options]="availableTeams"
-                               (selectedValue)="updateSelectedTeam($event)"
-                               class="selection" placeholder="Team">
+                               (selectedValueChange)="updateSelectedTeam($event)"
+                               class="selection"
+                               placeholder="Team">
       </app-auto-complete-input>
       <app-auto-complete-input ngDefaultControl
                                [formControl]="this.filterForm.controls.league"
                                [options]="availableLeagues"
-                               (selectedValue)="updateSelectedLeague($event)"
+                               (selectedValueChange)="updateSelectedLeague($event)"
                                class="selection"
                                placeholder="Liga">
       </app-auto-complete-input>
@@ -27,13 +28,17 @@
     </div>
     <div class="form-line">
       <mat-form-field>
-        <input matInput [formControl]="this.filterForm.controls.dateFrom" [matDatepicker]="pickerFrom" placeholder="von Datum">
+        <input matInput [formControl]="this.filterForm.controls.dateFrom"
+               [matDatepicker]="pickerFrom"
+               placeholder="von Datum">
         <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
         <mat-datepicker #pickerFrom></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [formControl]="this.filterForm.controls.dateUntil" [matDatepicker]="pickerUntil" placeholder="bis Datum">
+        <input matInput [formControl]="this.filterForm.controls.dateUntil"
+               [matDatepicker]="pickerUntil"
+               placeholder="bis Datum">
         <mat-datepicker-toggle matSuffix [for]="pickerUntil"></mat-datepicker-toggle>
         <mat-datepicker #pickerUntil></mat-datepicker>
       </mat-form-field>
