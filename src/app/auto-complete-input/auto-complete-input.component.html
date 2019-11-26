@@ -6,7 +6,7 @@
          aria-label="Number"
          matInput>
   <mat-autocomplete #auto="matAutocomplete"
-                    (optionSelected)="changeSelection($event.option.value)">
+                    (optionSelected)="selectedValueChange.emit($event.option.value)">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
       {{toStringFn(option)}}
     </mat-option>

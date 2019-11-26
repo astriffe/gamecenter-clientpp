@@ -1,12 +1,10 @@
 .common-actions {
-  position: fixed !important;
+  position: fixed;
   right: 15px;
   bottom: 15px;
 
-
   display: flex;
   flex-direction: column;
-
   justify-content: flex-end;
 
   > app-button-with-text {

@@ -1,13 +1,15 @@
-import {AfterViewInit, Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Game} from './model/game';
 import {takeUntil, tap} from 'rxjs/operators';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import * as moment from 'moment';
-import 'moment-timezone';
 import {environment} from '../environments/environment';
 import {QueryParamBuilder, QueryParamGroup} from "@ngqp/core";
+import {Team} from "./model/teams";
+import {League} from "./model/league";
+import * as moment from 'moment';
+import 'moment-timezone';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +22,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private gameData: Game[] = [];
 
+  private allTeams: string[];
+  private allLeagues: string[];
   public availableLeagues: string[] = [];
-  public availableTeams: any[] = [];
+  private teamLeagues: Map<string, string[]> = new Map<string, []>();
 
   public selectedLeague: string;
   public selectedTeam: string;
@@ -43,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
       team: new FormControl('', Validators.required),
       league: new FormControl('', Validators.required),
       homeGame: new FormControl(''),
-      dateFrom: new FormControl(''),
+      dateFrom: new FormControl(moment()),
       dateUntil: new FormControl(''),
     });
   }
@@ -52,8 +56,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.httpClient.get(environment.dataUrl)
       .pipe(
         tap((games: Game[]) => this.gameData = games),
-        tap((games) => this.processAvailableTeams(games)),
-        tap((games) => this.processAvailableLeagues(games)),
+        tap((games) => this.extractAllTeams(games)),
+        tap((games) => this.extractAllLeagues(games)),
+        tap((games) => this.createTeamToLeagueMap(games)),
+        tap(() => this.updateSelectedTeam(this.filterForm.controls['team'].value)),
         takeUntil(this.destroy$),
       )
       .subscribe((games: Game[]) => {
@@ -104,25 +110,45 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public updateSelectedTeam(team: string): void {
     this.searchParams.get('team').setValue(team as any);
+    this.availableLeagues = team ? this.teamLeagues.get(team) : this.allLeagues;
+    this.availableLeagues.sort();
   }
 
   public updateSelectedLeague(league: string): void {
     this.searchParams.get('league').setValue(league as any);
   }
 
-  private processAvailableLeagues(games: Game[]): void {
-    this.availableLeagues = [...new Set(games.map((game: Game) => game.league.caption))];
-    this.availableLeagues.sort();
+  private extractAllLeagues(games: Game[]): void {
+    this.allLeagues = [...new Set(games.map((game: Game) => game.league.caption))];
+    this.allLeagues.sort();
+    this.availableLeagues = this.allLeagues;
   }
 
-  private processAvailableTeams(games: Game[]) {
-    const allTeams = games.map(game => game.teams.home.caption).concat(games.map(game => game.teams.away.caption));
-    this.availableTeams = [...new Set(allTeams)];
-    this.availableLeagues.sort();
+  private extractAllTeams(games: Game[]) {
+    this.allTeams = [
+      ...new Set(games
+        .map(game => game.teams.home.caption)
+        .concat(games.map(game => game.teams.away.caption))
+      )];
+    this.allTeams.sort();
   }
 
   public ngOnDestroy(): void {
     this.destroy$.next();
+  }
+
+  private createTeamToLeagueMap(games: Game[]) {
+    games.forEach((game) => {
+      this.addOrUpdateTeamLeague(game.teams.home, game.league);
+      this.addOrUpdateTeamLeague(game.teams.away, game.league);
+    });
+  }
+
+  private addOrUpdateTeamLeague(team: Team, league: League): void {
+    const currentLeagues = this.teamLeagues.get(team.caption);
+    currentLeagues
+      ? this.teamLeagues.set(team.caption, [...new Set([...currentLeagues, league.caption])])
+      : this.teamLeagues.set(team.caption, [league.caption]);
   }
 }
 
