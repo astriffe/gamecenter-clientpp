@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -8,10 +8,10 @@ import {map, startWith} from 'rxjs/operators';
   templateUrl: './auto-complete-input.component.html',
   styleUrls: ['./auto-complete-input.component.scss'],
 })
-export class AutoCompleteInputComponent<T> implements OnInit {
+export class AutoCompleteInputComponent<T> implements OnInit, OnChanges {
 
   @Input()
-  private readonly options: T[];
+  private options: T[];
 
   @Input()
   public placeholder: string;
@@ -37,16 +37,19 @@ export class AutoCompleteInputComponent<T> implements OnInit {
     this.filteredOptions = this.formControl.valueChanges
       .pipe(
         startWith(''),
-        map(value => this._filter(value)),
+        map(value => this._filter(this.options || [], value)),
       );
   }
 
-  public changeSelection(selection: T): void {
-    this.selectedValueChange.emit(selection);
+  private _filter(options: T[], value: string): T[] {
+    const filterValue = value ? value.toLowerCase() : '';
+    return options.filter(option => this.toStringFn(option).toLowerCase().includes(filterValue));
   }
 
-  private _filter(value: string): T[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => this.toStringFn(option).toLowerCase().includes(filterValue));
+  ngOnChanges(changes: SimpleChanges): void {
+    const options = changes.options;
+    if (options && options.currentValue && !options.currentValue.includes(this.formControl.value)) {
+      this.formControl.setValue('');
+    }
   }
 }

@@ -9,7 +9,7 @@
     <div class="form-line">
       <app-auto-complete-input ngDefaultControl
                                [formControl]="this.filterForm.controls.team"
-                               [options]="availableTeams"
+                               [options]="allTeams"
                                (selectedValueChange)="updateSelectedTeam($event)"
                                class="selection"
                                placeholder="Team">
