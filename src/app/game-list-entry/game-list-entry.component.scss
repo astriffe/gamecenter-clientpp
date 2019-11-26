@@ -2,7 +2,7 @@
   display: grid;
   align-content: start;
   justify-content: start;
-  grid-template-columns: 100px auto;
+  grid-template-columns: 85px auto;
   grid-template-rows: auto;
 
   grid-column-gap: 1em;
@@ -31,6 +31,19 @@
     font-weight: bold;
 
     display: flex;
+
+    @media(max-width: 450px) {
+      flex-direction: column;
+      :first-child:after {
+        font-weight: lighter;
+        font-style: italic;
+        font-size: smaller;
+        content: " vs.";
+      }
+      > .divider {
+        display: none;
+      }
+    }
 
     .divider {
       margin: 0 .5em;
