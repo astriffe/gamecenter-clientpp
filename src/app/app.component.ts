@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private gameData: Game[] = [];
 
-  private allTeams: string[];
+  public allTeams: string[];
   private allLeagues: string[];
   public availableLeagues: string[] = [];
   private teamLeagues: Map<string, string[]> = new Map<string, []>();
@@ -100,10 +100,10 @@ export class AppComponent implements OnInit, OnDestroy {
       || (!this.filterHomeGame && game.teams.away.caption === this.selectedTeam));
     result = result.filter(game => game.league.caption === this.selectedLeague);
     if (this.filterFrom) {
-      result = result.filter(game => moment.tz(game.playDate, 'Europe/Zurich').isAfter(this.filterFrom));
+      result = result.filter(game => moment.tz(game.playDate, 'Europe/Zurich').isAfter(moment(this.filterFrom).subtract(1, 'day')));
     }
     if (this.filterUntil) {
-      result = result.filter(game => moment.tz(game.playDate, 'Europe/Zurich').isBefore(this.filterUntil));
+      result = result.filter(game => moment.tz(game.playDate, 'Europe/Zurich').isBefore(moment(this.filterUntil).add(1, 'day')));
     }
     this.filteredGames = result;
   }

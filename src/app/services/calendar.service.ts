@@ -38,6 +38,6 @@ export class CalendarService {
       `DESCRIPTION:Volleyball Match ${game.teams.home.caption} - ${game.teams.away.caption}`,
       `LOCATION:${AddressUtil.getFullAddress(game.hall)}`,
       `END:VEVENT`,
-    ].join('\n');
+    ].join('\r\n');
   }
 }

@@ -37,6 +37,7 @@
       flex-direction: column;
       :first-child:after {
         font-weight: lighter;
+        color: gray;
         font-style: italic;
         font-size: smaller;
         content: " vs.";
