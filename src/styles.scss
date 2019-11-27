@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 $animate: all 0.2s ease-in-out;
+$primary: #3f51b5;
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -14,16 +15,18 @@ html {
 
 a {
   text-decoration: none;
-  color: black;
-  padding: .05em;
+  color: $primary;
 
-  background-image: linear-gradient(120deg, lightblue 0%, lightblue 100%);
-  background-repeat: no-repeat;
-  background-size: 5em 0.1em;
-  background-position: 0 100%;
-  transition: background-size 0.25s ease-in;
+  > div {
+    text-decoration:  underline $primary;
+  }
 
   &:hover {
+    color: $primary;
     background-size: 100% .2em;
+
+    > div {
+      text-decoration:  none;
+    }
   }
 }

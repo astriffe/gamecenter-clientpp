@@ -5,14 +5,15 @@
   grid-template-columns: 85px auto;
   grid-template-rows: auto;
 
-  grid-column-gap: 1em;
+  grid-column-gap: 1.25vw;
   grid-row-gap: .2em;
-  margin: .5em;
+  padding: 1em;
 
   > .date {
     grid-row-start: 1;
     grid-row-end: 2;
     justify-self: right;
+    align-self: flex-end;
   }
 
   > .time {
