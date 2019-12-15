@@ -1,11 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {GamesRegionComponent} from "./components/games-region/games-region.component";
+import {GameDataResolve} from "./services/game-data-resolve";
 
 const routes: Routes = [
   {
     path: ':region',
-    component: GamesRegionComponent
+    component: GamesRegionComponent,
+    resolve: {
+      gameData: GameDataResolve
+    }
   },
   {
     path: '',
@@ -16,6 +20,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [GameDataResolve]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

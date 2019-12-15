@@ -6,7 +6,6 @@ import {Game} from "../../model/game";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {QueryParamBuilder, QueryParamGroup} from "@ngqp/core";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
 import {Team} from "../../model/teams";
 import {League} from "../../model/league";
 import * as moment from "moment";
@@ -18,7 +17,7 @@ import * as moment from "moment";
 })
 export class GamesRegionComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
-  private gameData: Game[] = [];
+  private gameData: Game[];
 
   public allTeams: string[];
   private allLeagues: string[];
@@ -55,21 +54,7 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const region = this.route.snapshot.paramMap.get('region');
-    const url = environment.dataUrl.replace('##REGION##', region);
-    this.httpClient.get(url)
-      .pipe(
-        tap((games: Game[]) => this.gameData = games),
-        tap((games) => this.extractAllTeams(games)),
-        tap((games) => this.extractAllLeagues(games)),
-        tap((games) => this.createTeamToLeagueMap(games)),
-        tap(() => this.updateSelectedTeam(this.filterForm.controls['team'].value)),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((games: Game[]) => {
-        this.gameData = games;
-        this.updateFilteredGames();
-      });
+    this.gameData = this.route.snapshot.data.gameData;
 
     this.filterForm.valueChanges
       .pipe(
@@ -79,6 +64,12 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
 
     this.bindFilterPropertyFormToSearchParam('team');
     this.bindFilterPropertyFormToSearchParam('league');
+
+    this.extractAllTeams(this.gameData);
+    this.extractAllLeagues(this.gameData);;
+    this.createTeamToLeagueMap(this.gameData);
+    this.updateSelectedTeam(this.filterForm.controls['team'].value);
+    this.updateFilteredGames();
   }
 
   private bindFilterPropertyFormToSearchParam(formProperty: string, paramName?: string): void {
