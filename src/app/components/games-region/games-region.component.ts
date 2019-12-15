@@ -56,20 +56,20 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.gameData = this.route.snapshot.data.gameData;
 
+    this.bindFilterPropertyFormToSearchParam('team');
+    this.bindFilterPropertyFormToSearchParam('league');
+
+    this.extractAllTeams(this.gameData);
+    this.extractAllLeagues(this.gameData);
+    this.createTeamToLeagueMap(this.gameData);
+    this.updateSelectedTeam(this.filterForm.controls['team'].value);
+    this.updateFilteredGames();
+
     this.filterForm.valueChanges
       .pipe(
         tap(() => this.updateFilteredGames()),
         takeUntil(this.destroy$))
       .subscribe();
-
-    this.bindFilterPropertyFormToSearchParam('team');
-    this.bindFilterPropertyFormToSearchParam('league');
-
-    this.extractAllTeams(this.gameData);
-    this.extractAllLeagues(this.gameData);;
-    this.createTeamToLeagueMap(this.gameData);
-    this.updateSelectedTeam(this.filterForm.controls['team'].value);
-    this.updateFilteredGames();
   }
 
   private bindFilterPropertyFormToSearchParam(formProperty: string, paramName?: string): void {
