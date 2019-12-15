@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Game } from '../model/game';
-import { DateUtil } from '../util/date.util';
-import { AddressUtil } from '../util/address.util';
+import {DateUtil} from "../../util/date.util";
+import {Game} from "../../model/game";
+import {AddressUtil} from "../../util/address.util";
 
 @Component({
   selector: 'app-game-list-entry',

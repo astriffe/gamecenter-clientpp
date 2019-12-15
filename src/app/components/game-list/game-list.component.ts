@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Game } from '../model/game';
-import { SpreadsheetService } from '../services/spreadsheet.service';
-import { DateUtil } from '../util/date.util';
-import { AddressUtil } from '../util/address.util';
+import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
-import { CalendarService } from '../services/calendar.service';
+import {Game} from "../../model/game";
+import {SpreadsheetService} from "../../services/spreadsheet.service";
+import {CalendarService} from "../../services/calendar.service";
+import {DateUtil} from "../../util/date.util";
+import {AddressUtil} from "../../util/address.util";
 
 @Component({
   selector: 'app-game-list',
