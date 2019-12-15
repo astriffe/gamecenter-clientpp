@@ -1,0 +1,53 @@
+<div>
+  <form [formGroup]="filterForm" [queryParamGroup]="searchParams">
+    <div class="form-line">
+      <app-auto-complete-input ngDefaultControl
+                               [formControl]="this.filterForm.controls.team"
+                               [options]="allTeams"
+                               (selectedValueChange)="updateSelectedTeam($event)"
+                               class="selection"
+                               placeholder="Team">
+      </app-auto-complete-input>
+      <app-auto-complete-input ngDefaultControl
+                               [formControl]="this.filterForm.controls.league"
+                               [options]="availableLeagues"
+                               (selectedValueChange)="updateSelectedLeague($event)"
+                               class="selection"
+                               placeholder="Liga">
+      </app-auto-complete-input>
+      <mat-slide-toggle [formControl]="this.filterForm.controls.homeGame"
+                        color="primary"
+                        name="filterHomeGame">nur Heimspiele
+      </mat-slide-toggle>
+    </div>
+    <div class="form-line">
+      <mat-form-field>
+        <input matInput [formControl]="this.filterForm.controls.dateFrom"
+               [matDatepicker]="pickerFrom"
+               placeholder="von Datum">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [formControl]="this.filterForm.controls.dateUntil"
+               [matDatepicker]="pickerUntil"
+               placeholder="bis Datum">
+        <mat-datepicker-toggle matSuffix [for]="pickerUntil"></mat-datepicker-toggle>
+        <mat-datepicker #pickerUntil></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div class="result-area">
+  <div *ngIf="filterForm.valid && filteredGames.length > 0">
+    <app-game-list [games]="filteredGames"></app-game-list>
+  </div>
+  <div *ngIf="!filterForm.valid" class="invalid">
+    Bitte Liga und Team eingeben.
+  </div>
+  <div *ngIf="filterForm.valid && filteredGames.length === 0" class="invalid">
+    Keine Spiele gefunden.
+  </div>
+</div>

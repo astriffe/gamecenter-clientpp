@@ -25,6 +25,7 @@ import {AutoCompleteInputComponent} from "./components/auto-complete-input/auto-
 import {ButtonComponent} from "./components/button/button.component";
 import {GameListEntryComponent} from "./components/game-list-entry/game-list-entry.component";
 import {GameListComponent} from "./components/game-list/game-list.component";
+import { GamesRegionComponent } from './components/games-region/games-region.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {GameListComponent} from "./components/game-list/game-list.component";
     GameListComponent,
     GameListEntryComponent,
     ButtonComponent,
+    GamesRegionComponent,
   ],
   imports: [
     BrowserModule,

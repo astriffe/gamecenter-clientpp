@@ -1,0 +1,39 @@
+$DEFAULT_FORM_SPACING: 2em;
+
+.form-line {
+  display: flex;
+  flex: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
+
+  &> * {
+    margin: 0 1em;
+  }
+
+  > mat-slide-toggle {
+    margin-bottom: 1em;
+  }
+}
+
+.result-area {
+  display: flex;
+  justify-content: center;
+  flex: auto;
+
+  > div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .invalid {
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: x-large;
+    color: darkgray;
+  }
+}
