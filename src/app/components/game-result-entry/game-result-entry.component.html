@@ -1,0 +1,21 @@
+<div class="game-entry">
+  <div class="date-time date">{{date}}</div>
+  <div class="date-time time">{{time}}</div>
+
+  <div class="total-sets" [ngClass]="{'winner': homeWins()}">{{getHomeSets()}}</div>
+  <div class="total-sets" [ngClass]="{'winner': !homeWins()}">{{getAwaySets()}}</div>
+  <span class="team-home" [ngClass]="{'winner': homeWins()}">{{game.teams.home.caption}}</span>
+  <span class="team-away" [ngClass]="{'winner': !homeWins()}">{{game.teams.away.caption}}</span>
+
+  <ng-container *ngFor="let i of [0,1,2,3,4]">
+    <div class="set-result"
+         [ngClass]="{'winner': getSetResults()[i] && getSetResults()[i].home > getSetResults()[i].away}">
+      {{getSetResults()[i] && getSetResults()[i].home || ''}}
+    </div>
+    <div class="set-result"
+         [ngClass]="{'winner': getSetResults()[i] && getSetResults()[i].home < getSetResults()[i].away}">
+      {{getSetResults()[i] && getSetResults()[i].away || ''}}
+    </div>
+  </ng-container>
+</div>
+<mat-divider></mat-divider>

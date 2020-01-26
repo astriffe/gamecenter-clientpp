@@ -1,0 +1,42 @@
+$REDUCED_OPACITY: 0.6;
+
+.game-entry {
+  display: grid;
+  grid-auto-flow: column;
+  align-content: start;
+  justify-content: start;
+  grid-template-columns: 85px 1.5em 200px 1em 1em 1em 1em 1em;
+
+  width: 100%;
+  grid-column-gap: 1.25vw;
+  grid-row-gap: .2em;
+  padding: 1em;
+
+  > .date-time {
+    opacity: $REDUCED_OPACITY;
+    justify-self: right;
+  }
+
+  > .date {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-self: flex-end;
+  }
+
+  > .time {
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  > .winner {
+    font-weight: bold;
+  }
+
+  > .total-sets {
+    justify-self: right;
+  }
+
+  > .set-result {
+    opacity: $REDUCED_OPACITY;
+  }
+}

@@ -27,6 +27,9 @@ import {GameListEntryComponent} from "./components/game-list-entry/game-list-ent
 import {GameListComponent} from "./components/game-list/game-list.component";
 import {GamesRegionComponent} from './components/games-region/games-region.component';
 import {SpinnerComponent} from './components/spinner/spinner.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {GameResultsComponent} from "./components/game-results/game-results.component";
+import {GameResultEntryComponent} from "./components/game-result-entry/game-result-entry.component";
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import {SpinnerComponent} from './components/spinner/spinner.component';
     AutoCompleteInputComponent,
     GameListComponent,
     GameListEntryComponent,
+    GameResultsComponent,
+    GameResultEntryComponent,
     ButtonComponent,
     GamesRegionComponent,
     SpinnerComponent,
@@ -57,6 +62,7 @@ import {SpinnerComponent} from './components/spinner/spinner.component';
     MatButtonModule,
     MatTooltipModule,
     QueryParamModule,
+    MatTabsModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},

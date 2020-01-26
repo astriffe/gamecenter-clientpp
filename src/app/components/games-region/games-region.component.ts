@@ -30,6 +30,8 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
   public filterFrom: string;
   public filterUntil: string;
   public filteredGames: Game[] = [];
+  public filteredFutureGames: Game[] = [];
+  public filteredPlayedGames: Game[] = [];
 
   public filterForm: FormGroup;
   public searchParams: QueryParamGroup;
@@ -48,7 +50,7 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
       team: new FormControl('', Validators.required),
       league: new FormControl('', Validators.required),
       homeGame: new FormControl(''),
-      dateFrom: new FormControl(moment()),
+      dateFrom: new FormControl(''),
       dateUntil: new FormControl(''),
     });
   }
@@ -101,6 +103,9 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
       result = result.filter(game => moment.tz(game.playDate, 'Europe/Zurich').isBefore(moment(this.filterUntil).add(1, 'day')));
     }
     this.filteredGames = result;
+    this.filteredFutureGames = result.filter(game => !game.setResults);
+    this.filteredPlayedGames = result.filter(game => game.setResults);
+    console.log('>>> played games: ', this.filteredPlayedGames);
   }
 
   public updateSelectedTeam(team: string): void {

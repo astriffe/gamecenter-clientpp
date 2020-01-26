@@ -3,16 +3,19 @@
 OUT_DIR="/home/gefaessc/www/alexanderstriff/volley/data"
 
 # Global time range definitions
-TODAY=$(date '+%Y-%m-%d')
 MONTH=$(date '+%m')
-YEAR=$(date '+%Y')
-
-if [ "$MONTH" -ge 7 ]; then
-  YEAR=$((YEAR += 1))
+START_YEAR=$(date '+%Y')
+if [ "$MONTH" -lt 7 ]; then
+  START_YEAR=$((YEAR -= 1))
 fi
 
-END="${YEAR}-06-30"
-START=$TODAY
+END_YEAR=$(date '+%Y')
+if [ "$MONTH" -ge 7 ]; then
+  END_YEAR=$((YEAR += 1))
+fi
+
+START="${START_YEAR}-07-01"
+END="${END_YEAR}-06-30"
 
 # Fetch game data for a single region
 # $1 - region name
@@ -29,7 +32,6 @@ fetch_for_region() {
     --silent \
     -o "${OUT_DIR}/$1.json"
 }
-
 
 mkdir -p $OUT_DIR
 fetch_for_region SVRBE

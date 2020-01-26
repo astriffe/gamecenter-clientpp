@@ -25,7 +25,7 @@ $DEFAULT_FORM_SPACING: 2em;
   justify-content: center;
   flex: auto;
 
-  > div {
+  div {
     display: flex;
     justify-content: center;
   }
@@ -36,4 +36,5 @@ $DEFAULT_FORM_SPACING: 2em;
     font-size: x-large;
     color: darkgray;
   }
+
 }

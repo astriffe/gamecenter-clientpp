@@ -1,6 +1,7 @@
-import { Hall } from './hall';
-import { Teams } from './teams';
-import { League } from './league';
+import {Hall} from './hall';
+import {Teams} from './teams';
+import {League} from './league';
+import {SetResult} from "./set-result";
 
 export interface Game {
   gameId: number;
@@ -10,4 +11,5 @@ export interface Game {
   league: League;
   group: { groupId: number, caption: string };
   hall: Hall;
+  setResults: { 1, 2, 3, 4, 5: SetResult };
 }
