@@ -12,5 +12,7 @@
 </div>
 
 <div *ngFor="let game of games" class="game-grid">
-  <app-game-list-entry [game]="game"></app-game-list-entry>
+  <app-game-list-entry
+    [game]="game"
+    (onTeamClick)="onTeamClick.emit($event)"></app-game-list-entry>
 </div>

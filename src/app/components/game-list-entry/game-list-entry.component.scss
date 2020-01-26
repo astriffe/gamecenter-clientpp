@@ -33,6 +33,10 @@
 
     display: flex;
 
+    > .team {
+      cursor: pointer;
+    }
+
     @media(max-width: 450px) {
       flex-direction: column;
       :first-child:after {
@@ -42,6 +46,7 @@
         font-size: smaller;
         content: " vs.";
       }
+
       > .divider {
         display: none;
       }

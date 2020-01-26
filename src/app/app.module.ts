@@ -61,7 +61,7 @@ import {GameResultEntryComponent} from "./components/game-result-entry/game-resu
     MatChipsModule,
     MatButtonModule,
     MatTooltipModule,
-    QueryParamModule,
+    QueryParamModule.withConfig({routerOptions: {replaceUrl: false}}),
     MatTabsModule,
   ],
   providers: [

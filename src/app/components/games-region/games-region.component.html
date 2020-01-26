@@ -40,26 +40,36 @@
   </form>
 </div>
 
-  <div *ngIf="!filterForm.valid" class="invalid">
-    Bitte Liga und Team eingeben.
-  </div>
-  <div *ngIf="filterForm.valid" class="result-area">
-    <mat-tab-group class="result-area" mat-align-tabs="center" [dynamicHeight]="true">
-      <mat-tab label="Spielplan">
-        <div *ngIf="filterForm.valid && filteredFutureGames.length > 0">
-          <app-game-list [games]="filteredFutureGames"></app-game-list>
-        </div>
-        <div *ngIf="filterForm.valid && filteredFutureGames.length === 0" class="invalid">
-          Keine Spiele gefunden.
-        </div>
-      </mat-tab>
-      <mat-tab label="Resultate">
-        <div *ngIf="filterForm.valid && filteredPlayedGames.length > 0">
-          <app-game-results [games]="filteredPlayedGames"></app-game-results>
-        </div>
-        <div *ngIf="filterForm.valid && filteredPlayedGames.length === 0" class="invalid">
-          Keine Spiele gefunden.
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
+<div *ngIf="!filterForm.valid" class="invalid">
+  Bitte Liga und Team eingeben.
+</div>
+<div *ngIf="filterForm.valid" class="result-area">
+  <mat-tab-group class="result-area"
+                 mat-align-tabs="center"
+                 [dynamicHeight]="true"
+                 [selectedIndex]="selectedTabIndex"
+                 (selectedIndexChange)="onTabChange($event)">
+    <mat-tab label="Spielplan">
+      <div *ngIf="filterForm.valid && filteredFutureGames.length > 0">
+        <app-game-list
+          [games]="filteredFutureGames"
+          (onTeamClick)="updateSelectedTeam($event)">
+        </app-game-list>
+      </div>
+      <div *ngIf="filterForm.valid && filteredFutureGames.length === 0" class="invalid">
+        Keine Spiele gefunden.
+      </div>
+    </mat-tab>
+    <mat-tab label="Resultate">
+      <div *ngIf="filterForm.valid && filteredPlayedGames.length > 0">
+        <app-game-results
+          [games]="filteredPlayedGames"
+          (onTeamClick)="updateSelectedTeam($event)">
+        </app-game-results>
+      </div>
+      <div *ngIf="filterForm.valid && filteredPlayedGames.length === 0" class="invalid">
+        Keine Spiele gefunden.
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

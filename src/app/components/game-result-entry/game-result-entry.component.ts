@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DateUtil} from "../../util/date.util";
 import {Game} from "../../model/game";
 import {SetResult} from "../../model/set-result";
@@ -12,6 +12,9 @@ export class GameResultEntryComponent {
 
   @Input()
   public game: Game;
+
+  @Output()
+  public onTeamClick: EventEmitter<string> = new EventEmitter<string>();
 
   public get date(): string {
     return DateUtil.extractDate(this.game.playDate);
@@ -29,7 +32,7 @@ export class GameResultEntryComponent {
     return this.getSetResults().filter(setResult => setResult && setResult.home < setResult.away).length;
   }
 
-  private getSetResults(): SetResult[] {
+  getSetResults(): SetResult[] {
     const setResults = this.game.setResults;
     return [1,2,3,4,5].map(i => setResults[i]);
   }

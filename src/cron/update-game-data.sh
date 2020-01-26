@@ -6,12 +6,12 @@ OUT_DIR="/home/gefaessc/www/alexanderstriff/volley/data"
 MONTH=$(date '+%m')
 START_YEAR=$(date '+%Y')
 if [ "$MONTH" -lt 7 ]; then
-  START_YEAR=$((YEAR -= 1))
+  START_YEAR=$((START_YEAR -= 1))
 fi
 
 END_YEAR=$(date '+%Y')
 if [ "$MONTH" -ge 7 ]; then
-  END_YEAR=$((YEAR += 1))
+  END_YEAR=$((END_YEAR += 1))
 fi
 
 START="${START_YEAR}-07-01"

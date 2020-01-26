@@ -7,9 +7,9 @@
   </div>
 
   <div class="encounter">
-    <div class="team-home">{{game.teams.home.caption}}</div>
+    <div class="team" (click)="onTeamClick.emit(game.teams.home.caption)">{{game.teams.home.caption}}</div>
     <div class="divider">-</div>
-    <div class="team-away">{{game.teams.away.caption}}</div>
+    <div class="team" (click)="onTeamClick.emit(game.teams.away.caption)">{{game.teams.away.caption}}</div>
   </div>
 
   <div class="location">

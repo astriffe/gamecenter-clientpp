@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import * as moment from 'moment';
 import {Game} from "../../model/game";
 import {SpreadsheetService} from "../../services/spreadsheet.service";
@@ -15,6 +15,9 @@ export class GameListComponent implements OnInit {
 
   @Input()
   public games: Game[];
+
+  @Output()
+  public onTeamClick: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private spreadsheetService: SpreadsheetService,
               private calendarService: CalendarService) {

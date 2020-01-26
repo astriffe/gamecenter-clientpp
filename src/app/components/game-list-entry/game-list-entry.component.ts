@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DateUtil} from "../../util/date.util";
 import {Game} from "../../model/game";
 import {AddressUtil} from "../../util/address.util";
@@ -12,6 +12,9 @@ export class GameListEntryComponent implements OnInit {
 
   @Input()
   public game: Game;
+
+  @Output()
+  public onTeamClick: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
   }

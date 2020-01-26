@@ -20,6 +20,13 @@ $DEFAULT_FORM_SPACING: 2em;
   }
 }
 
+.invalid {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: x-large;
+  color: darkgray;
+}
+
 .result-area {
   display: flex;
   justify-content: center;
@@ -29,12 +36,4 @@ $DEFAULT_FORM_SPACING: 2em;
     display: flex;
     justify-content: center;
   }
-
-  .invalid {
-    margin-top: 1.5em;
-    text-align: center;
-    font-size: x-large;
-    color: darkgray;
-  }
-
 }

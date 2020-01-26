@@ -35,6 +35,7 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
 
   public filterForm: FormGroup;
   public searchParams: QueryParamGroup;
+  public selectedTabIndex: number = 0;
 
   constructor(private httpClient: HttpClient,
               private queryParamBuilder: QueryParamBuilder,
@@ -43,7 +44,8 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
   ) {
     this.searchParams = queryParamBuilder.group({
       team: queryParamBuilder.stringParam('t'),
-      league: queryParamBuilder.stringParam('l')
+      league: queryParamBuilder.stringParam('l'),
+      view: queryParamBuilder.stringParam('v')
     });
 
     this.filterForm = formBuilder.group({
@@ -60,6 +62,9 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
 
     this.bindFilterPropertyFormToSearchParam('team');
     this.bindFilterPropertyFormToSearchParam('league');
+    (this.searchParams.get('view').valueChanges as Observable<any>)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(tabIndex => this.selectedTabIndex = tabIndex);
 
     this.extractAllTeams(this.gameData);
     this.extractAllLeagues(this.gameData);
@@ -116,6 +121,11 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
 
   public updateSelectedLeague(league: string): void {
     this.searchParams.get('league').setValue(league as any);
+  }
+
+  onTabChange(tabIndex: number) {
+    this.searchParams.get('view').setValue(tabIndex as any);
+    this.selectedTabIndex = tabIndex;
   }
 
   private extractAllLeagues(games: Game[]): void {
