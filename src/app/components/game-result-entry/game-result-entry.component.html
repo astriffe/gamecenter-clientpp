@@ -6,12 +6,12 @@
   <div class="total-sets" [ngClass]="{'winner': !homeWins()}">{{getAwaySets()}}</div>
   <span class="team"
         [ngClass]="{'winner': homeWins()}"
-        (click)="onTeamClick.emit(game.teams.home.caption)">
+        (click)="teamClicked$.emit(game.teams.home.caption)">
     {{game.teams.home.caption}}
   </span>
   <span class="team"
         [ngClass]="{'winner': !homeWins()}"
-        (click)="onTeamClick.emit(game.teams.away.caption)">
+        (click)="teamClicked$.emit(game.teams.away.caption)">
     {{game.teams.away.caption}}
   </span>
 

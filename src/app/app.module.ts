@@ -20,16 +20,16 @@ import {CalendarService} from './services/calendar.service';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {QueryParamModule} from "@ngqp/core";
-import {AutoCompleteInputComponent} from "./components/auto-complete-input/auto-complete-input.component";
-import {ButtonComponent} from "./components/button/button.component";
-import {GameListEntryComponent} from "./components/game-list-entry/game-list-entry.component";
-import {GameListComponent} from "./components/game-list/game-list.component";
+import {QueryParamModule} from '@ngqp/core';
+import {AutoCompleteInputComponent} from './components/auto-complete-input/auto-complete-input.component';
+import {ButtonComponent} from './components/button/button.component';
+import {GameListEntryComponent} from './components/game-list-entry/game-list-entry.component';
+import {GameListComponent} from './components/game-list/game-list.component';
 import {GamesRegionComponent} from './components/games-region/games-region.component';
 import {SpinnerComponent} from './components/spinner/spinner.component';
-import {MatTabsModule} from "@angular/material/tabs";
-import {GameResultsComponent} from "./components/game-results/game-results.component";
-import {GameResultEntryComponent} from "./components/game-result-entry/game-result-entry.component";
+import {MatTabsModule} from '@angular/material/tabs';
+import {GameResultsComponent} from './components/game-results/game-results.component';
+import {GameResultEntryComponent} from './components/game-result-entry/game-result-entry.component';
 
 @NgModule({
   declarations: [

@@ -53,7 +53,7 @@
       <div *ngIf="filterForm.valid && filteredFutureGames.length > 0">
         <app-game-list
           [games]="filteredFutureGames"
-          (onTeamClick)="updateSelectedTeam($event)">
+          (teamClicked$)="updateSelectedTeam($event)">
         </app-game-list>
       </div>
       <div *ngIf="filterForm.valid && filteredFutureGames.length === 0" class="invalid">
@@ -64,7 +64,7 @@
       <div *ngIf="filterForm.valid && filteredPlayedGames.length > 0">
         <app-game-results
           [games]="filteredPlayedGames"
-          (onTeamClick)="updateSelectedTeam($event)">
+          (teamClicked$)="updateSelectedTeam($event)">
         </app-game-results>
       </div>
       <div *ngIf="filterForm.valid && filteredPlayedGames.length === 0" class="invalid">

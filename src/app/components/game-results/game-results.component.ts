@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import * as moment from 'moment';
-import {Game} from "../../model/game";
+import {Game} from '../../model/game';
 
 @Component({
   selector: 'app-game-results',
@@ -13,7 +13,7 @@ export class GameResultsComponent implements OnInit {
   public games: Game[];
 
   @Output()
-  public onTeamClick: EventEmitter<string> = new EventEmitter<string>();
+  public teamClicked$: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit() {
     const compareFn = (a, b) => moment(a.playDate).valueOf() - moment(b.playDate).valueOf();

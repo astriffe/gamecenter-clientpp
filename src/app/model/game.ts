@@ -1,7 +1,7 @@
 import {Hall} from './hall';
 import {Teams} from './teams';
 import {League} from './league';
-import {SetResult} from "./set-result";
+import {SetResult} from './set-result';
 
 export interface Game {
   gameId: number;

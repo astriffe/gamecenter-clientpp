@@ -1,14 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subject} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {takeUntil, tap} from "rxjs/operators";
-import {Game} from "../../model/game";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {QueryParamBuilder, QueryParamGroup} from "@ngqp/core";
-import {HttpClient} from "@angular/common/http";
-import {Team} from "../../model/teams";
-import {League} from "../../model/league";
-import * as moment from "moment";
+import {Observable, Subject} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {takeUntil, tap} from 'rxjs/operators';
+import {Game} from '../../model/game';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {QueryParamBuilder, QueryParamGroup} from '@ngqp/core';
+import {HttpClient} from '@angular/common/http';
+import {Team} from '../../model/teams';
+import {League} from '../../model/league';
+import * as moment from 'moment';
+import 'moment-timezone';
 
 @Component({
   selector: 'app-games-region',
@@ -23,7 +24,6 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
   private allLeagues: string[];
   public availableLeagues: string[] = [];
   private teamLeagues: Map<string, string[]> = new Map<string, []>();
-
   public selectedLeague: string;
   public selectedTeam: string;
   public filterHomeGame: boolean;
@@ -35,7 +35,7 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
 
   public filterForm: FormGroup;
   public searchParams: QueryParamGroup;
-  public selectedTabIndex: number = 0;
+  public selectedTabIndex = 0;
 
   constructor(private httpClient: HttpClient,
               private queryParamBuilder: QueryParamBuilder,
@@ -69,7 +69,7 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
     this.extractAllTeams(this.gameData);
     this.extractAllLeagues(this.gameData);
     this.createTeamToLeagueMap(this.gameData);
-    this.updateSelectedTeam(this.filterForm.controls['team'].value);
+    this.updateSelectedTeam(this.filterForm.controls.team.value);
     this.updateFilteredGames();
 
     this.filterForm.valueChanges

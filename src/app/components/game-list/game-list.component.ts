@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import * as moment from 'moment';
-import {Game} from "../../model/game";
-import {SpreadsheetService} from "../../services/spreadsheet.service";
-import {CalendarService} from "../../services/calendar.service";
-import {DateUtil} from "../../util/date.util";
-import {AddressUtil} from "../../util/address.util";
+import {Game} from '../../model/game';
+import {SpreadsheetService} from '../../services/spreadsheet.service';
+import {CalendarService} from '../../services/calendar.service';
+import {DateUtil} from '../../util/date.util';
+import {AddressUtil} from '../../util/address.util';
 
 @Component({
   selector: 'app-game-list',
@@ -17,7 +17,7 @@ export class GameListComponent implements OnInit {
   public games: Game[];
 
   @Output()
-  public onTeamClick: EventEmitter<string> = new EventEmitter<string>();
+  public teamClicked$: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private spreadsheetService: SpreadsheetService,
               private calendarService: CalendarService) {

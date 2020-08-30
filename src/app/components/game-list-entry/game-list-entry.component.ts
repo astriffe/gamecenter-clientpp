@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DateUtil} from "../../util/date.util";
-import {Game} from "../../model/game";
-import {AddressUtil} from "../../util/address.util";
+import {DateUtil} from '../../util/date.util';
+import {Game} from '../../model/game';
+import {AddressUtil} from '../../util/address.util';
 
 @Component({
   selector: 'app-game-list-entry',
@@ -14,7 +14,7 @@ export class GameListEntryComponent implements OnInit {
   public game: Game;
 
   @Output()
-  public onTeamClick: EventEmitter<string> = new EventEmitter<string>();
+  public teamClicked$: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
   }

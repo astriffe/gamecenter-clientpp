@@ -1,8 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
 import 'moment-timezone';
-import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
-import {filter, takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
+import {filter, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent implements OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe(routerEvent => {
       routerEvent instanceof NavigationStart ? this.loading = true : this.loading = false;
-    })
+    });
   }
 
   ngOnDestroy(): void {

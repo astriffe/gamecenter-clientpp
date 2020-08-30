@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {DateUtil} from "../../util/date.util";
-import {Game} from "../../model/game";
-import {SetResult} from "../../model/set-result";
+import {DateUtil} from '../../util/date.util';
+import {Game} from '../../model/game';
+import {SetResult} from '../../model/set-result';
 
 @Component({
   selector: 'app-game-result-entry',
@@ -14,7 +14,7 @@ export class GameResultEntryComponent {
   public game: Game;
 
   @Output()
-  public onTeamClick: EventEmitter<string> = new EventEmitter<string>();
+  public teamClicked$: EventEmitter<string> = new EventEmitter<string>();
 
   public get date(): string {
     return DateUtil.extractDate(this.game.playDate);
@@ -34,7 +34,7 @@ export class GameResultEntryComponent {
 
   getSetResults(): SetResult[] {
     const setResults = this.game.setResults;
-    return [1,2,3,4,5].map(i => setResults[i]);
+    return [1, 2, 3, 4, 5].map(i => setResults[i]);
   }
 
   homeWins(): boolean {
