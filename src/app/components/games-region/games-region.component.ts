@@ -110,7 +110,6 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
     this.filteredGames = result;
     this.filteredFutureGames = result.filter(game => !game.setResults);
     this.filteredPlayedGames = result.filter(game => game.setResults);
-    console.log('>>> played games: ', this.filteredPlayedGames);
   }
 
   public updateSelectedTeam(team: string): void {
