@@ -8,4 +8,8 @@ export class DateUtil {
   public static extractTime(datetime: string): string {
     return moment.tz(datetime, 'Europe/Zurich').format('HH:mm');
   }
+
+  public static extractWeekday(datetime: string): string {
+    return moment.tz(datetime, 'Europe/Zurich').format('dd');
+  }
 }

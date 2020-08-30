@@ -30,6 +30,10 @@ export class GameListEntryComponent implements OnInit {
     return DateUtil.extractTime(this.game.playDate);
   }
 
+  public get dayOfWeek(): string {
+    return DateUtil.extractWeekday(this.game.playDate);
+  }
+
   public get address(): string {
     return AddressUtil.getFullAddress(this.game.hall);
   }

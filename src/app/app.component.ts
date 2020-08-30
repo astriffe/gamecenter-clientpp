@@ -3,6 +3,8 @@ import 'moment-timezone';
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {filter, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import * as moment from 'moment';
+import 'moment/min/locales';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,7 @@ export class AppComponent implements OnDestroy {
   private supportedRouterEvents = [NavigationStart, NavigationEnd, NavigationCancel, NavigationError];
 
   constructor(private router: Router) {
+    moment.locale('de-ch');
     router.events.pipe(
       filter(routerEvent => !!this.supportedRouterEvents.find(supportedEvent => routerEvent instanceof supportedEvent)),
       takeUntil(this.destroy$)
