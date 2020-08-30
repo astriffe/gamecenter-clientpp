@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Game } from '../model/game';
+import {Injectable} from '@angular/core';
+import {Game} from '../model/game';
 import * as moment from 'moment';
-import { AddressUtil } from '../util/address.util';
+import {AddressUtil} from '../util/address.util';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CalendarService {
+
+  private readonly LINE_FEED = '\r\n';
 
   constructor() {
   }
@@ -15,14 +17,14 @@ export class CalendarService {
     return [
       'BEGIN:VCALENDAR',
       'PRODID:-//striffeler//gamecenter-export//DE',
-      'VERISON:2.0',
+      'VERSION:2.0',
       this.generateEventEntries(games),
       'END:VCALENDAR',
-    ].join('\n');
+    ].join(this.LINE_FEED);
   }
 
   private generateEventEntries(games: Game[]): string {
-    return games.map((game) => this.generateEventEntry(game)).join('\n');
+    return games.map((game) => this.generateEventEntry(game)).join(this.LINE_FEED);
   }
 
   private generateEventEntry(game: Game): string {
@@ -38,6 +40,6 @@ export class CalendarService {
       `DESCRIPTION:Volleyball Match ${game.teams.home.caption} - ${game.teams.away.caption}`,
       `LOCATION:${AddressUtil.getFullAddress(game.hall)}`,
       `END:VEVENT`,
-    ].join('\r\n');
+    ].join(this.LINE_FEED);
   }
 }
