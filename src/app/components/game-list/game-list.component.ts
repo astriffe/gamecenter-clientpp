@@ -29,17 +29,10 @@ export class GameListComponent implements OnInit {
   }
 
   public exportSpreadsheet(): void {
-    const spreadsheetData = this.games.map((game) => {
-      return {
-        datum: DateUtil.extractDate(game.playDate),
-        zeit: DateUtil.extractTime(game.playDate),
-        heimmannschaft: game.teams.home.caption,
-        gastmannschaft: game.teams.away.caption,
-        adresse: AddressUtil.getFullAddress(game.hall),
-        liga: game.league.caption,
-      };
-    });
-    this.spreadsheetService.exportAsExcelFile(spreadsheetData, 'volleyball');
+    const filename = `volleyball-${this.games[0].league.caption}`
+      .replace(new RegExp('\\s', 'g'), '')
+      .replace(new RegExp('\\.', 'g'), '_');
+    this.spreadsheetService.exportAsExcelFile(this.games, filename);
   }
 
   public exportCalendarEntries() {

@@ -1,31 +1,53 @@
-import { Injectable } from '@angular/core';
-import * as FileSaver from 'file-saver';
-import * as XLSX from 'xlsx';
-
-const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-const EXCEL_EXTENSION = '.xlsx';
+import {Injectable} from '@angular/core';
+import zipcelx from 'zipcelx';
+import {Game} from '../model/game';
+import {DateUtil} from '../util/date.util';
+import {AddressUtil} from '../util/address.util';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpreadsheetService {
 
-  constructor() {
+  public exportAsExcelFile(games: Game[], excelFileName: string): void {
+    const config = {
+      filename: excelFileName,
+      sheet: {
+        data: [this.createHeaderRow(), ...this.createCellObjects(games)]
+      }
+    };
+    zipcelx(config);
   }
 
-  public exportAsExcelFile(json: any[], excelFileName: string): void {
-
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-    const workbook: XLSX.WorkBook = {Sheets: {data: worksheet}, SheetNames: ['data']};
-    const excelBuffer: any = XLSX.write(workbook, {bookType: 'xlsx', type: 'array'});
-    this.saveAsExcelFile(excelBuffer, excelFileName);
+  private createHeaderRow(): Cell[] {
+    return [
+      this.createStringCell('Datum'),
+      this.createStringCell('Zeit'),
+      this.createStringCell('Heim'),
+      this.createStringCell('Gast'),
+      this.createStringCell('Adresse'),
+      this.createStringCell('Liga')
+    ];
   }
 
-  private saveAsExcelFile(buffer: any, fileName: string): void {
-    const data: Blob = new Blob([buffer], {
-      type: EXCEL_TYPE,
-    });
-    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  private createCellObjects(games: Game[]): Cell[][] {
+    return games.map((game) => [
+      this.createStringCell(DateUtil.extractDate(game.playDate)),
+      this.createStringCell(DateUtil.extractTime(game.playDate)),
+      this.createStringCell(game.teams.home.caption),
+      this.createStringCell(game.teams.away.caption),
+      this.createStringCell(AddressUtil.getFullAddress(game.hall)),
+      this.createStringCell(game.league.caption),
+    ]);
   }
 
+  private createStringCell(data: string): Cell {
+    return {value: data, type: 'string'};
+  }
+
+}
+
+interface Cell {
+  value: string | number;
+  type: 'string' | 'number';
 }
