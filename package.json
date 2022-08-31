@@ -27,7 +27,7 @@
     "@angular/router": "^12.2.7",
     "@ngqp/core": "^1.2.0",
     "moment": "^2.29.2",
-    "moment-timezone": "^0.5.33",
+    "moment-timezone": "^0.5.35",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.6.7",
     "scss": "^0.2.4",
