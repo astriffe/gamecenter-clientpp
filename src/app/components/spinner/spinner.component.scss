@@ -23,37 +23,37 @@ $speed: 2s;
 .lds-grid div:nth-child(2) {
   top: 8px;
   left: 32px;
-  animation-delay: -$speed/3;
+  animation-delay: calc(-#{$speed}/3);
 }
 .lds-grid div:nth-child(3) {
   top: 8px;
   left: 56px;
-  animation-delay: -$speed/2;
+  animation-delay: calc(-#{$speed}/2);
 }
 .lds-grid div:nth-child(4) {
   top: 32px;
   left: 8px;
-  animation-delay: -$speed/4;
+  animation-delay: calc(-#{$speed}/4);
 }
 .lds-grid div:nth-child(5) {
   top: 32px;
   left: 32px;
-  animation-delay: -$speed/2;
+  animation-delay: calc(-#{$speed}/2);
 }
 .lds-grid div:nth-child(6) {
   top: 32px;
   left: 56px;
-  animation-delay: -$speed*3/4;
+  animation-delay: calc(-#{$speed}*3/4);
 }
 .lds-grid div:nth-child(7) {
   top: 56px;
   left: 8px;
-  animation-delay: -$speed/2;
+  animation-delay: calc(-#{$speed}/2);
 }
 .lds-grid div:nth-child(8) {
   top: 56px;
   left: 32px;
-  animation-delay: -$speed*3/4;
+  animation-delay: calc(-#{$speed}*3/4);
 }
 .lds-grid div:nth-child(9) {
   top: 56px;
@@ -68,3 +68,4 @@ $speed: 2s;
     opacity: 0.25;
   }
 }
+

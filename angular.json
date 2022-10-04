@@ -27,6 +27,7 @@
             "assets": [
               "src/favicon.ico",
               "src/games-1920.json",
+              "src/games-2223.json",
               "src/assets"
             ],
             "styles": [
@@ -47,7 +48,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -102,19 +102,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -129,6 +116,5 @@
         }
       }
     }
-  },
-  "defaultProject": "gamecenter-client"
+  }
 }

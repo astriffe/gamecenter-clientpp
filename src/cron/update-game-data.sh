@@ -23,7 +23,6 @@ fetch_for_region() {
   curl --request GET \
     --url "https://api.volleyball.ch/indoor/games?region=$1&dateStart=${START}&dateEnd=${END}" \
     --header 'Accept: application/json' \
-    --header 'Accept-Encoding: gzip, deflate' \
     --header 'Authorization: clicsoftGmbhMasterApiKey' \
     --header 'Cache-Control: no-cache' \
     --header 'Connection: keep-alive' \
@@ -34,4 +33,4 @@ fetch_for_region() {
 }
 
 mkdir -p $OUT_DIR
-fetch_for_region SVRBE
+fetch_for_region SVRBESO

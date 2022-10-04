@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  dataUrl: 'http://localhost:4200/games-1920.json',
+  dataUrl: 'http://localhost:4200/games-2223.json',
 };
 
 /*
