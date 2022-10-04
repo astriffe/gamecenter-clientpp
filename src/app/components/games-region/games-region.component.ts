@@ -108,8 +108,8 @@ export class GamesRegionComponent implements OnInit, OnDestroy {
       result = result.filter(game => moment.tz(game.playDate, 'Europe/Zurich').isBefore(moment(this.filterUntil).add(1, 'day')));
     }
     this.filteredGames = result;
-    this.filteredFutureGames = result.filter(game => !game.setResults);
-    this.filteredPlayedGames = result.filter(game => game.setResults);
+    this.filteredFutureGames = result.filter(game => !game.setResults?.length);
+    this.filteredPlayedGames = result.filter(game => game.setResults?.length);
   }
 
   public updateSelectedTeam(team: string): void {
