@@ -15,12 +15,10 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ])
   ]
 })
-export class SpinnerComponent implements OnInit {
+export class SpinnerComponent {
 
   constructor() {
   }
 
-  ngOnInit() {
-  }
 
 }

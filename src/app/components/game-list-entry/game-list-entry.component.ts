@@ -8,7 +8,7 @@ import {AddressUtil} from '../../util/address.util';
   templateUrl: './game-list-entry.component.html',
   styleUrls: ['./game-list-entry.component.scss'],
 })
-export class GameListEntryComponent implements OnInit {
+export class GameListEntryComponent {
 
   @Input()
   public game: Game;
@@ -17,9 +17,6 @@ export class GameListEntryComponent implements OnInit {
   public teamClicked$: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
-  }
-
-  ngOnInit() {
   }
 
   public get date(): string {
