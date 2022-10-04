@@ -1,4 +1,4 @@
 export interface SetResult {
   home: number;
-  away;
+  away: number;
 }
