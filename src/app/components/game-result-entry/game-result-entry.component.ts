@@ -33,8 +33,7 @@ export class GameResultEntryComponent {
   }
 
   getSetResults(): SetResult[] {
-    const setResults = this.game.setResults;
-    return [1, 2, 3, 4, 5].map(i => setResults[i]);
+    return this.game.setResults;
   }
 
   homeWins(): boolean {
